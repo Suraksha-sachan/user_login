@@ -1,13 +1,17 @@
 import express from 'express';
 import session from 'express-session';
 import bodyParser from 'body-parser';
+import dotenv from 'dotenv'
+dotenv.config()
 
 const app = express();
 
 app.use(bodyParser.json());
 
+console.log(process.env.SESSION_SECRET_KEY);
+
 app.use(session({
-  secret: 'surakshasachan',
+  secret: process.env.SESSION_SECRET_KEY,
   resave: false,
   saveUninitialized: true
 }));
